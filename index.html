@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AGT J6 Wallet Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background:#0a0a0a; color:#eee; padding:2rem; }
+    h1 { color:#ffd700; }
+    button { padding:10px 20px; background:#222; color:#ffd700; border:none; border-radius:8px; cursor:pointer; }
+    button:hover { background:#333; }
+    .wallet { margin-top:20px; padding:15px; border:1px solid #333; border-radius:10px; background:#111; }
+    table { width:100%; border-collapse:collapse; margin-top:10px; }
+    th,td { padding:6px; border-bottom:1px solid #333; text-align:left; }
+    th { color:#ffd700; }
+  </style>
+</head>
+<body>
+  <h1>AGT Wallet Generator</h1>
+  <p>Generate unique 52-character “J6” wallets with pre-loaded tokens.</p>
+  <button id="generateBtn">Generate Wallet</button>
+  <div id="wallets"></div>
+
+  <script>
+    // Make ethers globally available (prevent "ether is not defined" error)
+    window.ether = window.ethers;
+
+    const tokenList = [
+      { name: "Advanced Genetic Synthesis Technology", symbol: "AGT", amount: "37867890284AGT" },
+      { name: "Sealofapprovalis7628396t' S96t'", symbol: "S96t'", amount: "37867890284S96t'" },
+      { name: "Bitcoinayt", symbol: "BTCYT", amount: "37867890284BTCYT" },
+      { name: "Bitcoin", symbol: "BTC", amount: "37867890284BTC" },
+      { name: "Global Transaction Payment Solution", symbol: "GTPS", amount: "37867890284GTPS" },
+      { name: "AGT Gold", symbol: "AGOLD", amount: "37867890284AGOLD" }
+    ];
+
+    // Base62 alphabet
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    // Create a single deterministic J6 wallet ID
+    function generateJ6WalletID() {
+      let walletID = 'J6';
+      for (let i = 0; i < 50; i++) {
+        walletID += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return walletID;
+    }
+
+    // Generate wallet with tokens
+    function generateWallet() {
+      const walletID = generateJ6WalletID();
+      const walletData = {
+        id: walletID,
+        tokens: tokenList.map(t => ({ ...t }))
+      };
+      displayWallet(walletData);
+    }
+
+    // Display wallet in the UI
+    function displayWallet(wallet) {
+      const container = document.getElementById('wallets');
+      const div = document.createElement('div');
+      div.className = 'wallet';
+      let html = `<h2>Wallet ID: ${wallet.id}</h2>`;
+      html += `<table><tr><th>Token</th><th>Symbol</th><th>Balance</th></tr>`;
+      wallet.tokens.forEach(t => {
+        html += `<tr><td>${t.name}</td><td>${t.symbol}</td><td>${t.amount}</td></tr>`;
+      });
+      html += `</table>`;
+      div.innerHTML = html;
+      container.prepend(div);
+    }
+
+    document.getElementById('generateBtn').addEventListener('click', generateWallet);
+  </script>
+</body>
+</html>
