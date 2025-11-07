@@ -1,2 +1,2 @@
-# J6-agtwallet
+# Bitcoinayt Payment System
  bitcoinayt is a global transaction
