@@ -2,77 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AGT J6 Wallet Generator</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.umd.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Bitcoinayt Eyes Payment System (Simulated)</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#0a0a0a; color:#eee; padding:2rem; }
-    h1 { color:#ffd700; }
-    button { padding:10px 20px; background:#222; color:#ffd700; border:none; border-radius:8px; cursor:pointer; }
-    button:hover { background:#333; }
-    .wallet { margin-top:20px; padding:15px; border:1px solid #333; border-radius:10px; background:#111; }
-    table { width:100%; border-collapse:collapse; margin-top:10px; }
-    th,td { padding:6px; border-bottom:1px solid #333; text-align:left; }
-    th { color:#ffd700; }
+    /* Theme and styles for the secure simulation */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #0c0f25, #1a1f36);
+      color: #e0f7fa;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(40, 50, 80, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(79, 195, 247, 0.3);
+    }
+    h1 {
+      color: #4fc3f7;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #0288d1;
+      padding-bottom: 10px;
+    }
+    .eyes-payment-section {
+      background: rgba(50, 60, 90, 0.9);
+      padding: 25px;
+      border-radius: 12px;
+      margin: 30px 0;
+      border: 3px solid #ff9800;
+    }
+    .eyes-instruction {
+      font-size: 1.1em;
+      margin: 15px 0;
+      color: #e0f7fa;
+      font-weight: 500;
+      text-align: left;
+      padding: 0 50px;
+    }
+    .card-image {
+      width: 250px;
+      height: 160px;
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      border: 2px solid #444;
+      border-radius: 10px;
+      margin: 25px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    .chip {
+      width: 48px;
+      height: 35px;
+      background: linear-gradient(45deg, #ccc, #eee, #ccc);
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      border-radius: 5px;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+      animation: pulse 1.5s infinite alternate;
+    }
+    @keyframes pulse {
+      from { box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 5px rgba(255, 200, 0, 0.5); }
+      to { box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 0 15px rgba(255, 140, 0, 0.8); }
+    }
+    button {
+      background: #ff9800;
+      color: #0c0f25;
+      border: none;
+      padding: 12px 25px;
+      margin: 8px 10px;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px #c67c00;
+    }
+    button:hover {
+      background: #e68900;
+      box-shadow: 0 2px #c67c00;
+      transform: translateY(2px);
+    }
+    button:disabled {
+      background: #555;
+      box-shadow: 0 4px #333;
+      cursor: not-allowed;
+      color: #aaa;
+    }
+    #eyesMessage {
+      min-height: 120px;
+      margin: 25px 0 10px;
+      color: #aed581;
+      font-weight: bold;
+      white-space: pre-line;
+      padding: 15px;
+      border: 1px dashed #4caf50;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .tier-info {
+      background: rgba(30, 40, 70, 0.7);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px auto;
+      max-width: 550px;
+      border: 1px solid #4fc3f7;
+    }
+    .tier-info strong {
+        color: #ff9800;
+    }
   </style>
 </head>
 <body>
-  <h1>AGT Wallet Generator</h1>
-  <p>Generate unique 52-character “J6” wallets with pre-loaded tokens.</p>
-  <button id="generateBtn">Generate Wallet</button>
-  <div id="wallets"></div>
+  <div class="container">
+    <h1>SECURE BITCOINAYT EYES PAYMENT SYSTEM</h1>
+    <div class="subtitle">Tokenized, Multi-Factor Authentication Simulation</div>
+    
+    <div class="eyes-payment-section">
+      <h3>🔐 Transaction Protocol: Chip + Eyes</h3>
+      
+      <p class="eyes-instruction">
+        **Step 1: Token Generation (Card Chip)**
+        <br>— Look at the card chip to generate a single-use token (eliminating PAN exposure).
+        <br>
+        **Step 2: Biometric Validation (Eyes/Time)**
+        [span_0](start_span)[span_1](start_span)<br>— Look at the device to validate the transaction with your eyes (the 'recorder' and 'time' function[span_0](end_span)[span_1](end_span)).
+      </p>
+      
+      <div class="card-image">
+        <div class="chip"></div>
+        <div style="position: absolute; top: 80px; font-size: 0.9em; color: #fff;">(Chip for Secure Token Extraction)</div>
+      </div>
+
+      <div class="tier-info">
+        [span_2](start_span)<strong>Transaction Value:</strong> $3.68 (Based on the 8 Questions Example[span_2](end_span))
+      </div>
+      
+      <button id="scanBtn">🔑 STEP 1: Get Token from Chip</button>
+      <button id="transactBtn" disabled>👁️ STEP 2: Validate & Transact $3.68</button>
+      
+      <div id="eyesMessage">
+        Awaiting initiation. Press 'Get Token from Chip' to begin the secure transaction process.
+      </div>
+    </div>
+  </div>
 
   <script>
-    // Make ethers globally available (prevent "ether is not defined" error)
-    window.ether = window.ethers;
+    // === SECURE EYES PAYMENT LOGIC SIMULATION ===
+    const eyesMessage = document.getElementById('eyesMessage');
+    const scanBtn = document.getElementById('scanBtn');
+    const transactBtn = document.getElementById('transactBtn');
+    const TRANSACTION_AMOUNT = "$3.68";
+    const RECIPIENT = "David Gomadza";
+    
+    // Step 1: Simulate Tokenization (replacing card data with a secure token)
+    scanBtn.onclick = () => {
+      scanBtn.disabled = true;
+      eyesMessage.innerHTML = `
+        **Phase 1: Tokenization.**<br>
+        **🔑 SUCCESS:** Securely retrieving a single-use token from the chip.<br>
+        *No Primary Account Number (PAN) transmitted. Data is encrypted.*
+      `;
+      
+      setTimeout(() => {
+        eyesMessage.innerHTML = `
+          **Phase 2: Multi-Factor Ready.**<br>
+          ✅ Token generated: **TKN-867890283867890284**<br>
+          *Ready for Biometric Validation (Eyes + Time Function).*
+        `;
+        transactBtn.disabled = false;
+        if ('speechSynthesis' in window) {
+          speechSynthesis.speak(new SpeechSynthesisUtterance("Token generation successful. Please validate with your eyes."));
+        }
+      }, 3000);
+    };
 
-    const tokenList = [
-      { name: "Advanced Genetic Synthesis Technology", symbol: "AGT", amount: "37867890284AGT" },
-      { name: "Sealofapprovalis7628396t' S96t'", symbol: "S96t'", amount: "37867890284S96t'" },
-      { name: "Bitcoinayt", symbol: "BTCYT", amount: "37867890284BTCYT" },
-      { name: "Bitcoin", symbol: "BTC", amount: "37867890284BTC" },
-      { name: "Global Transaction Payment Solution", symbol: "GTPS", amount: "37867890284GTPS" },
-      { name: "AGT Gold", symbol: "AGOLD", amount: "37867890284AGOLD" }
-    ];
-
-    // Base62 alphabet
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    // Create a single deterministic J6 wallet ID
-    function generateJ6WalletID() {
-      let walletID = 'J6';
-      for (let i = 0; i < 50; i++) {
-        walletID += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return walletID;
-    }
-
-    // Generate wallet with tokens
-    function generateWallet() {
-      const walletID = generateJ6WalletID();
-      const walletData = {
-        id: walletID,
-        tokens: tokenList.map(t => ({ ...t }))
-      };
-      displayWallet(walletData);
-    }
-
-    // Display wallet in the UI
-    function displayWallet(wallet) {
-      const container = document.getElementById('wallets');
-      const div = document.createElement('div');
-      div.className = 'wallet';
-      let html = `<h2>Wallet ID: ${wallet.id}</h2>`;
-      html += `<table><tr><th>Token</th><th>Symbol</th><th>Balance</th></tr>`;
-      wallet.tokens.forEach(t => {
-        html += `<tr><td>${t.name}</td><td>${t.symbol}</td><td>${t.amount}</td></tr>`;
-      });
-      html += `</table>`;
-      div.innerHTML = html;
-      container.prepend(div);
-    }
-
-    document.getElementById('generateBtn').addEventListener('click', generateWallet);
+    // Step 2: Simulate Biometric Validation (The "Eyes as a means of payment" factor)
+    transactBtn.onclick = () => {
+      transactBtn.disabled = true;
+      eyesMessage.innerHTML = `
+        **Phase 3: Biometric Validation & Transmission.**<br>
+        💸 Scanning eyes (recorder) and applying the time function.<br>
+        *Transmitting the Token and Biometric Template via encrypted channel to GUP Station...*
+      `;
+      
+      setTimeout(() => {
+        eyesMessage.innerHTML = `
+          **🎉 TRANSACTION COMPLETE! 🎉**<br>
+          Amount: **${TRANSACTION_AMOUNT}**<br>
+          Recipient: **${RECIPIENT}**<br>
+          Method: **Secure Eyes-Only Payment (Token + Biometric MFA)**<br>
+          *The value remained constant throughout the transaction lifecycle.*<br>
+          [span_3](start_span)Code: create.eyesasameansofpayment7628267.start[span_3](end_span)
+        `;
+        scanBtn.disabled = false; // Reset for a new transaction
+        if ('speechSynthesis' in window) {
+          speechSynthesis.speak(new SpeechSynthesisUtterance(
+            `Transaction of ${TRANSACTION_AMOUNT} confirmed. Securely processed by Bitcoinayt.`
+          ));
+        }
+      }, 4000);
+    };
   </script>
+  https://bitcoinayt.world
+  
 </body>
 </html>
